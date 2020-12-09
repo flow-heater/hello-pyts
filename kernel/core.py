@@ -15,7 +15,7 @@ def get_code():
             local.get $x
             local.get $y
             i32.add)
-          (export "sum" (func $sum_f)))
+          (export "add" (func $sum_f)))
         """
     )
     return wasm_bytes
@@ -47,8 +47,8 @@ def run_code(wasm_code):
     instance = Instance(module)
 
     # The Wasm module exports a function called `sum`.
-    sum = instance.exports.sum
-    results = sum(1, 2)
+    add = instance.exports.add
+    results = add(1, 2)
 
     print(results)
 
