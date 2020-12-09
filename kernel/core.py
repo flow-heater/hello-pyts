@@ -1,5 +1,5 @@
 # Derived from https://github.com/wasmerio/wasmer-python/blob/master/examples/engine_jit.py
-
+import sys
 from wasmer import engine, wat2wasm, Store, Module, Instance
 from wasmer_compiler_cranelift import Compiler
 
@@ -18,6 +18,11 @@ def get_code():
           (export "add" (func $sum_f)))
         """
     )
+    return wasm_bytes
+
+
+def load_code(filename):
+    wasm_bytes = wat2wasm(open(filename, "r").read())
     return wasm_bytes
 
 
@@ -54,7 +59,14 @@ def run_code(wasm_code):
 
 
 def main():
-    code = get_code()
+    what = sys.argv[1]
+    if what == "inline":
+        code = get_code()
+    elif what == "typescript":
+        code = load_code("userspace-typescript/build/untouched.wat")
+        raise NotImplementedError("YMMV")
+    else:
+        raise ValueError("Undefined invocation")
     run_code(code)
 
 
