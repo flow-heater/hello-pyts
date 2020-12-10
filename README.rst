@@ -8,7 +8,7 @@ Synopsis
 ::
 
     # Setup.
-    virtualenv .venv --python=python3.8
+    python3.8 -m venv .venv
     source .venv/bin/activate
     pip install wasmer==1.0.0-beta1 wasmer_compiler_cranelift==1.0.0-beta1
 
@@ -16,9 +16,9 @@ Synopsis
     python kernel/core.py inline
 
     # Build userspace modules.
-    make user
+    make userspace
 
-    # Invoke core with code from TypeScript.
+    # Invoke core with wat code from TypeScript/AssemblyScript.
     python kernel/core.py typescript
 
 
