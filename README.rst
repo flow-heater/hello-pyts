@@ -8,7 +8,7 @@ Synopsis
 ::
 
     # Setup.
-    python3.8 -m venv .venv
+    python -m venv .venv
     source .venv/bin/activate
     pip install wasmer==1.0.0-beta1 wasmer_compiler_cranelift==1.0.0-beta1
 
